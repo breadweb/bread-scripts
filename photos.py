@@ -40,10 +40,9 @@ def process_args():
 
 def get_best_date(full_path):
     """
-    Get the date that most accurately represents when a photo
-    was taken. If the proper Exif tag for generated date/time 
-    exits, we trust it. If it doesn't exist, pick the crated
-    or modified file date, whichever is earlier. 
+    Get the date that most accurately represents when a photo was taken. If the
+    proper Exif tag for generated date/time exits, we trust it. If it doesn't
+    exist, pick the crated or modified file date, whichever is earlier. 
     """      
     info = None
     exif = False    
@@ -67,8 +66,8 @@ def get_best_date(full_path):
 def create_dir(args, date_string, media_dir):
     """
     Creates a directory based on a datetime string and provided subdirectory.
-    For example: create_dir(args, "2017:06:19 12:26:16", "Pictures") will 
-    create "E:\\Media\\Pictures\\2017\\2017-06"
+    For example a datetime string "2017:06:19 12:26:16" and subdirectory
+    "Pictures" will create "E:\\Media\\Pictures\\2017\\2017-06"
     """
     base_dir = args.dest_dir
     parts = date_string.split(":")
@@ -92,6 +91,8 @@ def copy_file(source_dir, source_file_name, dest_dir):
         name_parts[0] += "-" + str(append)
         new_name = '.'.join(name_parts)
         dest_full_path = os.path.join(dest_dir, new_name)
+    # copy2 will attempt to preserve meta data which is important
+    # since we don't want to overwrite created or modified date
     shutil.copy2(source_full_path, dest_full_path)
     return new_name if append > 0 else None
 
@@ -166,7 +167,7 @@ def main():
     log('Total files with exif data: {0:,}'.format(total_exif))
     log(json.dumps(file_exts))
     log('Total running time: %.2f seconds' % (time.time() - start_time))
-    
+
     log_file.close()
 
 
