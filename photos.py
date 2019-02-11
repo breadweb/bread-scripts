@@ -4,11 +4,11 @@
 Organize the family photos and videos. Initially used to aggregate the 60,000+
 photos and videos we had stored in hundreds of directories across multiple drives
 on multiple devices. The goal was to get all photos in one directory organized by
-year and month and to filter out unwanted files. 
+year and month and to filter out unwanted files. That makes it easy to 
+synchronize with our AWS S3 bucket which we use for backup. 
 
 Anytime someone exports media from a device or downloads it from another source,
-we run this script to organize it in the cerntal location. That makes it easy to 
-synchronize with our AWS S3 bucket which we use for backup. 
+we run this script to organize it in the central location. 
 """
 
 import argparse
